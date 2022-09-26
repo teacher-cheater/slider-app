@@ -1,19 +1,34 @@
-//import axios from "axios";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 
-//axios.get('https://slider.ymatuhin.workers.dev/', {
-//  params: {
-//    ID: 12345
-//  }
-//})
-//.then(function (response) {
-//  console.log(response);
-//})
-//.catch(function (error) {
-//  console.log(error);
-//});
-
 function App() {
+  //const [image, setImage] = useState([]);
+  //console.log(image);
+
+  //useEffect(() => {
+  //  const controller = new AbortController();
+  //  fetch("https://slider.ymatuhin.workers.dev/", {
+  //    signal: controller.signal,
+  //  })
+  //    .then((data) => data.json())
+  //    .then((response) => setImage(response.images));
+  //  return () => controller.abort();
+  //}, []);
+
+  const [appState, setAppState] = useState();
+  console.log(appState);
+  useEffect(() => {
+    const apiUrl = "https://slider.ymatuhin.workers.dev/";
+    axios.get(apiUrl).then((resp) => {
+      const allImages = resp.data;
+      setAppState(allImages.images);
+    });
+  }, [setAppState]);
+
+  //const data = image.length - 1;
+  //const [slideActive, setSlideActive] = useState(0);
+
   return (
     <div className="App">
       <div className="carousel slide">
